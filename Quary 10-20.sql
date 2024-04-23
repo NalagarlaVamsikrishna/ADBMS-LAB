@@ -1,0 +1,11 @@
+select*from customer where city='New York' or not grade>100;
+select*from salesman where (0.12<commission>0.14); 
+select*from salesman where(commission between 0.12 and 0.14);
+select*from customer where customer_name like '%n';
+select*from salesman where name like 'n__l%';
+select*from customer where grade is Null;
+select sum(purch_amt) from order1;
+select count(salesman_id) from customer;
+select count(distinct salesman_id) from order1;
+select city,max(grade) from customer group by city;
+select customer_id,max(purch_amt) from order1 group by customer_id;
