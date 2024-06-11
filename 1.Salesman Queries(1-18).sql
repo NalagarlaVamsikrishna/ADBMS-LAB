@@ -1,5 +1,6 @@
 create database vamsi;
 use vamsi;
+-- create salesman table
 create table salesman(salesman_id int primary key,name varchar(30),city varchar(30),commission float);
 insert into salesman (salesman_id,name,city,commission)
 values(5001,"James Hoog","New York",0.15),
@@ -9,7 +10,7 @@ values(5001,"James Hoog","New York",0.15),
 (5003,"Lauson Hen",null,0.12),
 (5007,"Paul Adam","Rome",0.13);
 
-
+-- create customer table
 create table customer(customer_id int,customer_name varchar(30),city varchar(30),grade int,salesman_id int,
 primary key (customer_id),foreign key (salesman_id) references salesman (salesman_id));
 insert into customer1(customer_id,customer_name,city,grade,salesman_id)
@@ -22,6 +23,7 @@ values(3002,"Nick Rimando","New York",100,5001),
 (3008,"Julian Green","London",300,5002),
 (3003,"Jozy Altidor","Mancow",200,5007);
 
+-- create order1 table
 create table order1(order_no int,purch_amt float,order_date date,customer_id int,salesman_id int);
 insert into order1(order_no,purch_amt,order_date,customer_id,salesman_id)
 values(70001,150.5,"2016-10-05",3005,5002),
@@ -38,7 +40,7 @@ values(70001,150.5,"2016-10-05",3005,5002),
 select*from salesman;
 select *from customer;
 select*from order1;
--- query 1-5
+-- query 1-18
 select name,commission from salesman;
 select distinct salesman_id from order1;
 select name,city from salesman where city="paris";
@@ -55,3 +57,10 @@ select count(salesman_id) from customer;
 select count(distinct salesman_id) from order1;
 select city,max(grade) from customer group by city;
 select customer_id,max(purch_amt) from order1 group by customer_id;
+select customer_id, order_date, max(purch_amt) from order1
+group by customer_id, order_date;
+select salesman_id, max(purch_amt) from order1
+where order_date = '2012-08-17' group by salesman_id;
+select customer_id, order_date, MAX(purch_amt) from order1
+group by customer_id, order_date having max(purch_amt) > 2000.00;
+select count(*) from order1 where order_date = '2012-08-17';
