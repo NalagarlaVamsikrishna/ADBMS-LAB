@@ -1,7 +1,7 @@
 DELIMITER $$
-create   procedure find_employees (in id int)
+create   procedure finds_employees (in id int)
 begin
-select*from employees where emp_id = id;
+select*from employees ;
 end $$
 DELIMITER ;
-call find_employees(0);
+call finds_employees(101);
